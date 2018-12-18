@@ -16,9 +16,13 @@ ENV FILES_DIR=/vagrant/files
 ENV VIRTUALENV_PATH=/envs/dmoj
 
 RUN adduser dmoj
+RUN adduser vagrant
 
 RUN /dmoj-site-docker/7.sh
 RUN /dmoj-site-docker/8.sh
+RUN pip install pymysql
+RUN mkdir -p /vagrant/files/
+RUN cp /dmoj-site-docker/files/* /vagrant/files/
 RUN /dmoj-site-docker/9.sh
 RUN /dmoj-site-docker/10.sh
 
