@@ -8,7 +8,7 @@ RUN /dmoj-site-docker/1.sh
 RUN /dmoj-site-docker/2.sh
 RUN /dmoj-site-docker/3.sh
 RUN /dmoj-site-docker/4.sh
-RUN /dmoj-site-docker/5.sh
+#RUN /dmoj-site-docker/5.sh
 RUN /dmoj-site-docker/6.sh
 
 ENV SITE_DIR=/vagrant/site
