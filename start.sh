@@ -4,7 +4,8 @@ echo "------------------------ check -----------------------------------------"
 python manage.py check
 echo "------------------------ migrate -----------------------------------------"
 python manage.py migrate
-
+echo "------------------------ makestyle -----------------------------------------"
+./make_style.sh
 echo "------------------------ collectstatic -----------------------------------------"
 echo "yes" | python manage.py collectstatic
 echo "------------------------ compilemessages -----------------------------------------"
@@ -17,5 +18,9 @@ echo "------------------------ loaddata language_small -------------------------
 python manage.py loaddata language_small
 echo "------------------------ loaddata demo -----------------------------------------"
 python manage.py loaddata demo
+echo "------------------------ create superuser -----------------------------------------"
+python manage.py createsuperuser
+#echo "------------------------ runserver -----------------------------------------"
+#python manage.py runserver 0.0.0.0:8000 #should not be used in production
 echo "------------------------ all done -----------------------------------------"
 
