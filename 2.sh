@@ -7,5 +7,4 @@ echo -e "\n --- Installing apt-get dependencies ---\n"
 	apt-get install -y nano supervisor nginx wget git build-essential python-dev python-pip libxml2-dev libxslt1-dev zlib1g-dev ruby-sass gettext curl 
 
 	pip install --upgrade pip
-	pip install django_auth_ldap ldap
 } >> "$LOGS_DIR/dependencies.log"

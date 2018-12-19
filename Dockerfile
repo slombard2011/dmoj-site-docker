@@ -46,7 +46,7 @@ RUN service nginx reload
 
 RUN service supervisor start
 RUN service nginx start
-
+RUN pip install django_auth_ldap ldap
 
 
 #RUN /dmoj-site-docker/10.sh
