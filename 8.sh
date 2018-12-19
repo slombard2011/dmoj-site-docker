@@ -11,5 +11,5 @@ echo -e "\n --- Checkout web app --- \n"
 	git submodule update
 } >> "$LOGS_DIR/checkout-app.log"
 
-echo -e "\n --- Setup web app ---\n"
-source "$VIRTUALENV_PATH/bin/activate"
+#echo -e "\n --- Setup web app ---\n"
+#source "$VIRTUALENV_PATH/bin/activate"
