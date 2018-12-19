@@ -10,6 +10,4 @@ echo -e "\n --- Installing apt-get dependencies ---\n"
 
 
 	pip install --upgrade pip
-	pip install ldap
-	pip install django_auth_ldap
 } >> "$LOGS_DIR/dependencies.log"

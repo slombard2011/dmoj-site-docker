@@ -38,6 +38,8 @@ COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
 #COPY files/wsevent.conf /etc/supervisor/conf.d/wsevent.conf
 #COPY files/config.js /site/websocket
 
+RUN pip install ldap
+RUN pip install django_auth_ldap
 
 #RUN rm /etc/nginx/sites-enabled/*
 #ADD files/nginx.conf /etc/nginx/sites-enabled
