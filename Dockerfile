@@ -41,15 +41,10 @@ COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
 RUN pip install ldap
 RUN pip install django_auth_ldap
 
-#RUN rm /etc/nginx/sites-enabled/*
-#ADD files/nginx.conf /etc/nginx/sites-enabled
-#RUN service nginx reload
+RUN rm -v /etc/nginx/nginx.conf
+ADD files/nginx.conf /etc/nginx/
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-RUN service supervisor start
-#RUN service nginx start
-
-
-#RUN /dmoj-site-docker/10.sh
 EXPOSE 80
 EXPOSE 9999
 EXPOSE 9998
@@ -57,3 +52,10 @@ EXPOSE 15100
 EXPOSE 15101
 EXPOSE 15102
 
+WORKDIR /vagrant/site
+
+ADD start.sh /vagrant/site/
+
+
+CMD ["/usr/sbin/nginx"]
+CMD ["/usr/sbin/supervisor"]
