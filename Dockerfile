@@ -34,7 +34,7 @@ RUN mkdir /uwsgi
 WORKDIR /uwsgi
 COPY files/uwsgi.ini /uwsgi
 RUN pip install uwsgi
-RUN uwsgi --ini /uwsgi/uwsgi.ini
+#RUN uwsgi --ini /uwsgi/uwsgi.ini
 #RUN curl http://uwsgi.it/install | bash -s default $PWD/uwsgi
 COPY files/site.conf /etc/supervisor/conf.d/site.conf
 COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
@@ -43,6 +43,8 @@ COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
 
 RUN pip install ldap
 RUN pip install django_auth_ldap
+
+RUN uwsgi --ini /uwsgi/uwsgi.ini
 
 RUN rm -v /etc/nginx/nginx.conf
 ADD files/nginx.conf /etc/nginx/
