@@ -57,6 +57,9 @@ ADD files/nginx.conf /etc/nginx/conf.d/
 ADD files/nginx.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
+RUN rm /vagrant/site/judge/middleware.py
+ADD middleware.py /vagrant/site/judge/
+RUN chmod 755 /vagrant/site/judge/middleware.py
 
 EXPOSE 80
 EXPOSE 9999
