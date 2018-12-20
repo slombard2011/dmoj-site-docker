@@ -53,6 +53,7 @@ ADD files/nginx.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 #RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
+
 EXPOSE 80
 EXPOSE 9999
 EXPOSE 9998
@@ -64,6 +65,4 @@ WORKDIR /vagrant/site
 
 ADD start.sh /vagrant/site/
 
-
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
-CMD ["/usr/sbin/supervisor"]
+chown dmoj-uwsgi -R /vagrant/site

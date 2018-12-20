@@ -43,3 +43,13 @@ Does the last conf :
 
 docker exec dmoj-site sh start.sh
 
+Start nginx
+
+docker exec dmoj-site service nginx reload
+docker exec dmoj-site service nginx start
+
+Start Supervisor
+
+docker exec dmoj-site service supervisor start
+
+
