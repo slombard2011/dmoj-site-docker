@@ -1,5 +1,9 @@
-FROM ubuntu:xenial
+#FROM ubuntu:xenial
+FROM debian:stretch
+#FROM alpine:3.8
 
+#RUN apk update
+#RUN apk add apt
 RUN apt-get update
 RUN apt-get install -y git
 RUN git clone https://github.com/Maitre-Hiboux/dmoj-site-docker
@@ -33,26 +37,25 @@ WORKDIR /dmoj-site-docker/files
 RUN mkdir /uwsgi
 WORKDIR /uwsgi
 COPY files/uwsgi.ini /uwsgi
+#RUN rm -rf /home/root/.local/lib/python2.7/site-packages/OpenSSL
+#RUN rm -rf usr/local/lib/python2.7/dist-packages/OpenSSL/
+#RUN pip install pyOpenSSL
+
+RUN echo "restart from here"
+
 RUN pip install uwsgi
-#RUN uwsgi --ini /uwsgi/uwsgi.ini
-#RUN curl http://uwsgi.it/install | bash -s default $PWD/uwsgi
 COPY files/site.conf /etc/supervisor/conf.d/site.conf
 COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
 #COPY files/wsevent.conf /etc/supervisor/conf.d/wsevent.conf
 #COPY files/config.js /site/websocket
 
-RUN pip install python-ldap==3.0.0
+RUN apt-get install python-ldap
 #RUN pip install ldap
-RUN pip install django_auth_ldap
+RUN apt-get install -y python-django-auth-ldap
 
-#RUN uwsgi --ini /uwsgi/uwsgi.ini 
-#RUN sleep 10
-
-#RUN rm -v /etc/nginx/nginx.conf
 ADD files/nginx.conf /etc/nginx/conf.d/
 ADD files/nginx.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
-#RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 
 EXPOSE 80
@@ -65,5 +68,3 @@ EXPOSE 15102
 WORKDIR /vagrant/site
 
 ADD start.sh /vagrant/site/
-
-#RUN chown dmoj-uwsgi -R /vagrant/site
