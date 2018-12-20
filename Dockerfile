@@ -41,7 +41,8 @@ COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
 #COPY files/wsevent.conf /etc/supervisor/conf.d/wsevent.conf
 #COPY files/config.js /site/websocket
 
-RUN pip install ldap==3.0.0
+RUN pip install python-ldap==3.0.0
+#RUN pip install ldap
 RUN pip install django_auth_ldap
 
 #RUN uwsgi --ini /uwsgi/uwsgi.ini 
@@ -65,4 +66,4 @@ WORKDIR /vagrant/site
 
 ADD start.sh /vagrant/site/
 
-RUN chown dmoj-uwsgi -R /vagrant/site
+#RUN chown dmoj-uwsgi -R /vagrant/site
