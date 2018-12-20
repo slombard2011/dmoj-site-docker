@@ -44,10 +44,13 @@ COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
 RUN pip install ldap
 RUN pip install django_auth_ldap
 
-RUN uwsgi --ini /uwsgi/uwsgi.ini
+#RUN uwsgi --ini /uwsgi/uwsgi.ini 
+#RUN sleep 10
 
-RUN rm -v /etc/nginx/nginx.conf
-ADD files/nginx.conf /etc/nginx/
+#RUN rm -v /etc/nginx/nginx.conf
+ADD files/nginx.conf /etc/nginx/conf.d/
+ADD files/nginx.conf /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 #RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 EXPOSE 80

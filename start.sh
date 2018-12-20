@@ -20,6 +20,8 @@ echo "------------------------ loaddata demo -----------------------------------
 python manage.py loaddata demo
 echo "------------------------ create superuser -----------------------------------------"
 python manage.py createsuperuser
+echo "------------------------ migrate -----------------------------------------"
+python manage.py migrate
 #echo "------------------------ runserver -----------------------------------------"
 #python manage.py runserver 0.0.0.0:8000 #should not be used in production
 echo "------------------------ all done -----------------------------------------"

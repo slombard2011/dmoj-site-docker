@@ -35,8 +35,11 @@ docker exec dmoj-mysql mysql -uroot -pdmoj --execute="CREATE DATABASE dmoj DEFAU
 
 docker exec dmoj-mysql mysql -uroot -pdmoj --execute="GRANT ALL PRIVILEGES ON dmoj.* to 'dmoj'@'%' IDENTIFIED BY 'dmoj';"
 
+Setup uwsgi, ctrl+c it out once worker have spawned like said in the dmoj doc :
+
+docker exec dmoj-site uwsgi --ini /uwsgi/uwsgi.ini
+
 Does the last conf :
 
 docker exec dmoj-site sh start.sh
-
 
