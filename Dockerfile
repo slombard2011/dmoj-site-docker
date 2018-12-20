@@ -65,4 +65,4 @@ WORKDIR /vagrant/site
 
 ADD start.sh /vagrant/site/
 
-chown dmoj-uwsgi -R /vagrant/site
+RUN chown dmoj-uwsgi -R /vagrant/site
