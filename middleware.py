@@ -10,6 +10,11 @@ class DMOJLoginMiddleware(object):
 
     def __call__(self, request):
         if request.user.is_authenticated:
+#            profile = request.profile = request.user.profile
+#            login_2fa_path = reverse('login_2fa')
+#            if (profile.is_totp_enabled and not request.session.get('2fa_passed', False) and
+#                    request.path != login_2fa_path and not request.path.startswith(settings.STATIC_URL)):
+#                return HttpResponseRedirect(login_2fa_path + '?next=' + urlquote(request.get_full_path()))
             try:
                 profile = request.profile = request.user.profile
                 login_2fa_path = reverse('login_2fa')
@@ -20,6 +25,16 @@ class DMOJLoginMiddleware(object):
                 request.profile = None
         else:
             request.profile = None
+        return self.get_response(request)
+
+
+class DMOJImpersonationMiddleware(object):
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.user.is_impersonate:
+            request.profile = request.user.profile
         return self.get_response(request)
 
 
