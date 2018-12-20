@@ -41,7 +41,7 @@ COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
 #COPY files/wsevent.conf /etc/supervisor/conf.d/wsevent.conf
 #COPY files/config.js /site/websocket
 
-RUN pip install ldap
+RUN pip install ldap==3.0.0
 RUN pip install django_auth_ldap
 
 #RUN uwsgi --ini /uwsgi/uwsgi.ini 
