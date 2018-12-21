@@ -7,6 +7,7 @@ FROM debian:stretch
 RUN apt-get update
 RUN apt-get install -y git
 RUN git clone https://github.com/Maitre-Hiboux/dmoj-site-docker
+RUN git clone https://github.com/ajaxorg/ace-builds
 RUN chmod 755 /dmoj-site-docker/*
 RUN /dmoj-site-docker/1.sh
 RUN /dmoj-site-docker/2.sh
@@ -69,5 +70,8 @@ EXPOSE 15101
 EXPOSE 15102
 
 WORKDIR /vagrant/site
+
+RUN mkdir -p /vagrant/site/static/libs/ace
+RUN cp -r /ace-builds/src-noconflict/* /vagrant/site/static/libs/ace/
 
 ADD start.sh /vagrant/site/
