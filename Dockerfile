@@ -61,6 +61,9 @@ RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.c
 RUN rm /vagrant/site/judge/middleware.py
 ADD middleware.py /vagrant/site/judge/
 RUN chmod 755 /vagrant/site/judge/middleware.py
+RUN rm /vagrant/site/judge/template_context.py
+ADD template_context.py /vagrant/site/judge/
+RUN chmod 755 /vagrant/site/judge/template_context.py
 
 EXPOSE 80
 EXPOSE 9999
@@ -75,3 +78,5 @@ RUN mkdir -p /vagrant/site/static/libs/ace
 RUN cp -r /ace-builds/src-noconflict/* /vagrant/site/static/libs/ace/
 
 ADD start.sh /vagrant/site/
+
+ENTRYPOINT ["/vagrant/site/docker-entrypoint.sh"]

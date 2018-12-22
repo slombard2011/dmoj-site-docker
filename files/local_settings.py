@@ -21,7 +21,7 @@ DATABASES = {
 	},
     }
 }
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', u'dsp0722618.postes.calibre.edf.fr']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', u'*']
 AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -56,14 +56,14 @@ USE_TZ = True
 # The judge connection address and port; where the judges will connect to the site.
 # You should change this to something your judges can actually connect to 
 # (e.g., a port that is unused and unblocked by a firewall).
-#BRIDGED_JUDGE_ADDRESS = [('localhost', 9999)]
-BRIDGED_JUDGE_HOST = 'host'
-BRIDGED_JUDGE_PORT = 9999
+BRIDGED_JUDGE_ADDRESS = [('0.0.0.0', 9999)]
+#BRIDGED_JUDGE_HOST = 'host'
+#BRIDGED_JUDGE_PORT = 9999
 
 # The bridged daemon bind address and port to communicate with the site.
-#BRIDGED_DJANGO_ADDRESS = [('localhost', 9998)]
-BRIDGED_DJANGO_HOST = 'host'
-BRIDGED_DJANGO_PORT = 9998
+BRIDGED_DJANGO_ADDRESS = [('0.0.0.0', 9998)]
+#BRIDGED_DJANGO_HOST = 'host'
+#BRIDGED_DJANGO_PORT = 9998
 
 ## DMOJ features.
 # Set to True to enable full-text searching for problems.
