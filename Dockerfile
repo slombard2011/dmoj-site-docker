@@ -77,6 +77,6 @@ WORKDIR /vagrant/site
 RUN mkdir -p /vagrant/site/static/libs/ace
 RUN cp -r /ace-builds/src-noconflict/* /vagrant/site/static/libs/ace/
 
-ADD start.sh /vagrant/site/
+ADD docker-entrypoint.sh /vagrant/site/
 
 ENTRYPOINT ["/vagrant/site/docker-entrypoint.sh"]
