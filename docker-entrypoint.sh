@@ -18,8 +18,8 @@ echo "------------------------ loaddata language_small -------------------------
 python manage.py loaddata language_small
 echo "------------------------ loaddata demo -----------------------------------------"
 python manage.py loaddata demo
-echo "------------------------ create superuser -----------------------------------------"
-python manage.py createsuperuser
+#echo "------------------------ create superuser -----------------------------------------"
+#python manage.py createsuperuser
 echo "------------------------ migrate -----------------------------------------"
 python manage.py migrate
 #echo "------------------------ runserver -----------------------------------------"
