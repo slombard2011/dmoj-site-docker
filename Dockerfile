@@ -78,5 +78,5 @@ RUN mkdir -p /vagrant/site/static/libs/ace
 RUN cp -r /ace-builds/src-noconflict/* /vagrant/site/static/libs/ace/
 
 ADD docker-entrypoint.sh /vagrant/site/
-
+RUN chmod 755 /vagrant/site/docker-entrypoint.sh
 ENTRYPOINT ["/vagrant/site/docker-entrypoint.sh"]
