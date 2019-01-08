@@ -1,15 +1,5 @@
 # dmoj-site-docker
 
-Interesting command :
-
-kill the site container :
-
-docker kill dmoj-site
-
-get rid of remaining unused things (be careful with it + it don't delete cache and some other things)
-
-docker system prune
-
 build image
 
 docker build --tag dmoj-site .
@@ -36,18 +26,9 @@ docker exec dmoj-mysql mysql -uroot -pdmoj --execute="CREATE DATABASE dmoj DEFAU
 
 docker exec dmoj-mysql mysql -uroot -pdmoj --execute="GRANT ALL PRIVILEGES ON dmoj.* to 'dmoj'@'%' IDENTIFIED BY 'dmoj';"
 
-Does the last conf :
+start the website :
 
-docker exec dmoj-site sh start.sh
+docker exec dmoj-site sh /dmoj/site/docker-entrypoint.sh
 
-Start nginx
-
-docker exec dmoj-site service nginx reload
-
-docker exec dmoj-site service nginx start
-
-Start Supervisor
-
-docker exec dmoj-site service supervisor start
 
 
