@@ -6,7 +6,10 @@ FROM debian:stretch
 #RUN apk add apt
 RUN apt-get update
 RUN apt-get install -y git
-RUN git clone https://github.com/Maitre-Hiboux/dmoj-site-docker
+RUN mkdir -p /dmoj-site-docker/files
+COPY * /dmoj-site-docker/
+COPY files/* /dmoj-site-docker/files/
+#RUN git clone https://github.com/Maitre-Hiboux/dmoj-site-docker
 RUN git clone https://github.com/ajaxorg/ace-builds
 RUN chmod 755 /dmoj-site-docker/*
 RUN /dmoj-site-docker/1.sh
