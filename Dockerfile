@@ -47,12 +47,13 @@ RUN echo "restart from here"
 RUN pip install uwsgi
 COPY files/site.conf /etc/supervisor/conf.d/site.conf
 COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
-#COPY files/wsevent.conf /etc/supervisor/conf.d/wsevent.conf
-#COPY files/config.js /site/websocket
+COPY files/wsevent.conf /etc/supervisor/conf.d/wsevent.conf
+COPY files/config.js /site/websocket
 
 RUN apt-get install python-ldap
 #RUN pip install ldap
 RUN apt-get install -y python-django-auth-ldap
+RUN npm install qu ws simplesets
 
 ADD files/nginx.conf /etc/nginx/conf.d/
 RUN rm /etc/nginx/sites-available/default
