@@ -1,23 +1,22 @@
-#FROM ubuntu:xenial
 FROM debian:stretch
-#FROM alpine:3.8
 
-#RUN apk update
-#RUN apk add apt
 RUN apt-get update
 RUN apt-get install -y git
+
 RUN mkdir -p /dmoj-site-docker/files
+RUN mkdir /dmoj-site-docker/buildscripts
 COPY * /dmoj-site-docker/
 COPY files/* /dmoj-site-docker/files/
-#RUN git clone https://github.com/Maitre-Hiboux/dmoj-site-docker
+COPY buildscripts/* /dmoj-site-docker/buildscripts/
+
 RUN git clone https://github.com/ajaxorg/ace-builds
 RUN chmod 755 /dmoj-site-docker/*
-RUN /dmoj-site-docker/1.sh
-RUN /dmoj-site-docker/2.sh
-RUN /dmoj-site-docker/3.sh
-RUN /dmoj-site-docker/4.sh
-#RUN /dmoj-site-docker/5.sh
-RUN /dmoj-site-docker/6.sh
+
+RUN /dmoj-site-docker/buildscripts/logsinit.sh
+RUN /dmoj-site-docker/buildscripts/dependencies.sh
+RUN /dmoj-site-docker/buildscripts/node.sh
+RUN /dmoj-site-docker/buildscripts/pleeeasecli.sh
+RUN /dmoj-site-docker/buildscripts/phantomjs.sh
 
 ENV SITE_DIR=/dmoj/site
 ENV FILES_DIR=/dmoj/files
@@ -26,13 +25,12 @@ ENV VIRTUALENV_PATH=/envs/dmoj
 RUN adduser dmoj
 RUN adduser dmoj-uwsgi
 
-#RUN /dmoj-site-docker/7.sh
-RUN /dmoj-site-docker/8.sh
+RUN /dmoj-site-docker/buildscripts/webapp.sh
 RUN pip install pymysql
 RUN mkdir -p /dmoj/files/
 RUN cp /dmoj-site-docker/files/* /dmoj/files/
 
-RUN /dmoj-site-docker/9.sh
+RUN /dmoj-site-docker/buildscripts/setupapp.sh
 
 
 WORKDIR /dmoj-site-docker/files
