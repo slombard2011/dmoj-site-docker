@@ -70,8 +70,8 @@ BRIDGED_DJANGO_ADDRESS = [('0.0.0.0', 9998)]
 ENABLE_FTS = True
 
 EVENT_DAEMON_USE = True
-EVENT_DAEMON_GET = 'ws://host/event/'
-EVENT_DAEMON_POST = 'ws://host:15101/'
+EVENT_DAEMON_GET = 'ws://0.0.0.0/event/'
+EVENT_DAEMON_POST = 'ws://127.0.0.1:15101/'
 EVENT_DAEMON_POLL = '/channels/'
 EVENT_DAEMON_KEY = None
 
