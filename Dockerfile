@@ -10,7 +10,7 @@ COPY files/* /dmoj-site-docker/files/
 COPY buildscripts/* /dmoj-site-docker/buildscripts/
 
 RUN git clone https://github.com/ajaxorg/ace-builds
-RUN chmod 755 /dmoj-site-docker/*
+RUN chmod 755 -R /dmoj-site-docker/*
 
 RUN /dmoj-site-docker/buildscripts/logsinit.sh
 RUN /dmoj-site-docker/buildscripts/dependencies.sh
@@ -55,8 +55,6 @@ RUN apt-get install python-ldap
 RUN apt-get install -y python-django-auth-ldap
 
 ADD files/nginx.conf /etc/nginx/conf.d/
-ADD files/nginx.conf /etc/nginx/sites-available/
-RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 RUN rm /dmoj/site/judge/middleware.py
 ADD middleware.py /dmoj/site/judge/
