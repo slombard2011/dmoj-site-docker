@@ -55,6 +55,10 @@ RUN apt-get install python-ldap
 RUN apt-get install -y python-django-auth-ldap
 
 ADD files/nginx.conf /etc/nginx/conf.d/
+RUN rm /etc/nginx/sites-available/default
+RUN rm /etc/nginx/sites-enabled/default
+ADD files/default /etc/nginx/sites-available/
+ADD files/default /etc/nginx/sites-enabled/
 
 RUN rm /dmoj/site/judge/middleware.py
 ADD middleware.py /dmoj/site/judge/
