@@ -1,11 +1,11 @@
 import ldap
 from django_auth_ldap.config import LDAPSearch
 
-STATIC_ROOT = "/vagrant/site/static/"
+STATIC_ROOT = "/dmoj/site/static/"
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/vagrant/site/cache/',
+        'LOCATION': '/dmoj/site/cache/',
     }
 }
 DATABASES = {

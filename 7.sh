@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOGS_DIR="/vagrant/logs"
+LOGS_DIR="/dmoj/logs"
 
 
 echo -e "\n --- Setup virtualenv ---\n"
@@ -11,5 +11,5 @@ echo -e "\n --- Setup virtualenv ---\n"
 
 	virtualenv -p python "$VIRTUALENV_PATH"
 
-	chown -R vagrant:vagrant "$VIRTUALENV_PATH"
+	chown -R dmoj:dmoj "$VIRTUALENV_PATH"
 } >> "$LOGS_DIR/virtualenv-setup.log"

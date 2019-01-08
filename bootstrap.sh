@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LOGS_DIR="/vagrant/logs"
+LOGS_DIR="/dmoj/logs"
 echo -e "\n --- Find all logs in $LOGS_DIR ---\n"
 rm -rf "$LOGS_DIR"
 mkdir -p "$LOGS_DIR"
@@ -43,14 +43,14 @@ function npm_package_is_installed {
 
 echo -e "\n --- Installing and Setting up MySQL ---\n"
 {
-	echo "mysql-server mysql-server/root_password password vagrant"       | debconf-set-selections
-	echo "mysql-server mysql-server/root_password_again password vagrant" | debconf-set-selections
+	echo "mysql-server mysql-server/root_password password dmoj"       | debconf-set-selections
+	echo "mysql-server mysql-server/root_password_again password dmoj" | debconf-set-selections
 
 	apt-get -y install mysql-server libmysqlclient-dev
 
 # echo -e "\n--- Setting up our MySQL user and db ---\n"
-	mysql -uroot -pvagrant -e "CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci"
-	mysql -uroot -pvagrant -e "grant all privileges on dmoj.* to 'vagrant'@'localhost' identified by 'vagrant'"
+	mysql -uroot -pdmoj -e "CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci"
+	mysql -uroot -pdmoj -e "grant all privileges on dmoj.* to 'dmoj'@'localhost' identified by 'dmoj'"
 
 	systemctl restart mysql
 } >> "$LOGS_DIR/mysql.log"
@@ -62,8 +62,8 @@ echo -e "\n --- Installing PhantomJS ---\n"
 	tar xvf phantomjs-2.1.1-linux-x86_64.tar.bz2
 } >> "$LOGS_DIR/phantomjs.log"
 
-SITE_DIR=/vagrant/site
-FILES_DIR=/vagrant/files
+SITE_DIR=/dmoj/site
+FILES_DIR=/dmoj/files
 VIRTUALENV_PATH=/envs/dmoj
 
 adduser dmoj
@@ -76,7 +76,7 @@ echo -e "\n --- Setup virtualenv ---\n"
 
 	virtualenv -p python "$VIRTUALENV_PATH"
 
-	chown -R vagrant:vagrant "$VIRTUALENV_PATH"
+	chown -R dmoj:dmoj "$VIRTUALENV_PATH"
 } >> "$LOGS_DIR/virtualenv-setup.log"
 
 echo -e "\n --- Checkout web app --- \n"
@@ -100,7 +100,7 @@ source "$VIRTUALENV_PATH/bin/activate"
 	pip install mysqlclient
 	pip install websocket-client
 
-	cp $FILES_DIR/local_settings.py /vagrant/site/dmoj/local_settings.py
+	cp $FILES_DIR/local_settings.py /dmoj/site/dmoj/local_settings.py
 
 	python manage.py check
 	python manage.py migrate
@@ -118,15 +118,15 @@ source "$VIRTUALENV_PATH/bin/activate"
 
 echo -e "Superuser created!"
 
-mkdir -p /vagrant/files
-cd /vagrant/files
+mkdir -p /dmoj/files
+cd /dmoj/files
 
 curl -s http://uwsgi.it/install | bash -s default "$PWD/uwsgi" >> "$LOGS_DIR/uwsgi.log"
 
 echo -e "\n --- Setup Supervisor and nginx ---\n"
 {
-	touch /vagrant/bridge.log
-	chmod 666 /vagrant/bridge.log
+	touch /dmoj/bridge.log
+	chmod 666 /dmoj/bridge.log
 
 	cp $FILES_DIR/site.conf /etc/supervisor/conf.d/site.conf
 	cp $FILES_DIR/bridged.conf /etc/supervisor/conf.d/bridged.conf

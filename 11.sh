@@ -1,8 +1,8 @@
 #!/bin/bash
 
-LOGS_DIR="/vagrant/logs"
+LOGS_DIR="/dmoj/logs"
 
-cd /vagrant/site
+cd /dmoj/site
 
 {
 	python manage.py check

@@ -16,19 +16,18 @@ RUN /dmoj-site-docker/4.sh
 #RUN /dmoj-site-docker/5.sh
 RUN /dmoj-site-docker/6.sh
 
-ENV SITE_DIR=/vagrant/site
-ENV FILES_DIR=/vagrant/files
+ENV SITE_DIR=/dmoj/site
+ENV FILES_DIR=/dmoj/files
 ENV VIRTUALENV_PATH=/envs/dmoj
 
 RUN adduser dmoj
-RUN adduser vagrant
 RUN adduser dmoj-uwsgi
 
 #RUN /dmoj-site-docker/7.sh
 RUN /dmoj-site-docker/8.sh
 RUN pip install pymysql
-RUN mkdir -p /vagrant/files/
-RUN cp /dmoj-site-docker/files/* /vagrant/files/
+RUN mkdir -p /dmoj/files/
+RUN cp /dmoj-site-docker/files/* /dmoj/files/
 
 RUN /dmoj-site-docker/9.sh
 
@@ -58,12 +57,12 @@ ADD files/nginx.conf /etc/nginx/conf.d/
 ADD files/nginx.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
-RUN rm /vagrant/site/judge/middleware.py
-ADD middleware.py /vagrant/site/judge/
-RUN chmod 755 /vagrant/site/judge/middleware.py
-RUN rm /vagrant/site/judge/template_context.py
-ADD template_context.py /vagrant/site/judge/
-RUN chmod 755 /vagrant/site/judge/template_context.py
+RUN rm /dmoj/site/judge/middleware.py
+ADD middleware.py /dmoj/site/judge/
+RUN chmod 755 /dmoj/site/judge/middleware.py
+RUN rm /dmoj/site/judge/template_context.py
+ADD template_context.py /dmoj/site/judge/
+RUN chmod 755 /dmoj/site/judge/template_context.py
 
 EXPOSE 80
 EXPOSE 9999
@@ -72,11 +71,11 @@ EXPOSE 15100
 EXPOSE 15101
 EXPOSE 15102
 
-WORKDIR /vagrant/site
+WORKDIR /dmoj/site
 
-RUN mkdir -p /vagrant/site/static/libs/ace
-RUN cp -r /ace-builds/src-noconflict/* /vagrant/site/static/libs/ace/
+RUN mkdir -p /dmoj/site/static/libs/ace
+RUN cp -r /ace-builds/src-noconflict/* /dmoj/site/static/libs/ace/
 
-ADD docker-entrypoint.sh /vagrant/site/
-RUN chmod 755 /vagrant/site/docker-entrypoint.sh
-ENTRYPOINT ["/vagrant/site/docker-entrypoint.sh"]
+ADD docker-entrypoint.sh /dmoj/site/
+RUN chmod 755 /dmoj/site/docker-entrypoint.sh
+#ENTRYPOINT ["/dmoj/site/docker-entrypoint.sh"]

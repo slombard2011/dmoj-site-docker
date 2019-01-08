@@ -1,16 +1,16 @@
 #!/bin/bash
 
-LOGS_DIR="/vagrant/logs"
+LOGS_DIR="/dmoj/logs"
 
-mkdir -p /vagrant/files
-cd /vagrant/files
+mkdir -p /dmoj/files
+cd /dmoj/files
 cp /dmoj-site-docker/files/* .
 curl -s http://uwsgi.it/install | bash -s default "$PWD/uwsgi" >> "$LOGS_DIR/uwsgi.log"
 
 echo -e "\n --- Setup Supervisor and nginx ---\n"
 {
-	touch /vagrant/bridge.log
-	chmod 666 /vagrant/bridge.log
+	touch /dmoj/bridge.log
+	chmod 666 /dmoj/bridge.log
 
 	cp site.conf /etc/supervisor/conf.d/site.conf
 	cp bridged.conf /etc/supervisor/conf.d/bridged.conf

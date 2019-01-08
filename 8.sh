@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOGS_DIR="/vagrant/logs"
+LOGS_DIR="/dmoj/logs"
 
 echo -e "\n --- Checkout web app --- \n"
 {

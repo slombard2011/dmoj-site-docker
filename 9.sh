@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOGS_DIR="/vagrant/logs"
+LOGS_DIR="/dmoj/logs"
 
 {
 	cd "$SITE_DIR"
@@ -15,7 +15,7 @@ LOGS_DIR="/vagrant/logs"
 	pip install mysqlclient
 	pip install websocket-client
 
-	cp $FILES_DIR/local_settings.py /vagrant/site/dmoj/local_settings.py
+	cp $FILES_DIR/local_settings.py /dmoj/site/dmoj/local_settings.py
 
 	
 

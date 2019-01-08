@@ -24,7 +24,7 @@ echo "------------------------ migrate -----------------------------------------
 python manage.py migrate
 #echo "------------------------ runserver -----------------------------------------"
 #python manage.py runserver 0.0.0.0:8000 #should not be used in production
-chown dmoj-uwsgi -R /vagrant/site
+chown dmoj-uwsgi -R /dmoj/site
 service nginx reload
 service nginx start
 service supervisor start
