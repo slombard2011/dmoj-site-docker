@@ -38,17 +38,12 @@ WORKDIR /dmoj-site-docker/files
 RUN mkdir /uwsgi
 WORKDIR /uwsgi
 COPY files/uwsgi.ini /uwsgi
-#RUN rm -rf /home/root/.local/lib/python2.7/site-packages/OpenSSL
-#RUN rm -rf usr/local/lib/python2.7/dist-packages/OpenSSL/
-#RUN pip install pyOpenSSL
-
-RUN echo "restart from here"
 
 RUN pip install uwsgi
 COPY files/site.conf /etc/supervisor/conf.d/site.conf
 COPY files/bridged.conf /etc/supervisor/conf.d/bridged.conf
 COPY files/wsevent.conf /etc/supervisor/conf.d/wsevent.conf
-COPY files/config.js /site/websocket
+COPY files/config.js /dmoj/site/websocket/
 
 RUN apt-get install python-ldap
 #RUN pip install ldap
