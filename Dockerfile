@@ -70,7 +70,10 @@ EXPOSE 15101
 EXPOSE 15102
 
 WORKDIR /dmoj/site
-
+RUN cp /dmoj-site-docker/mathjax.js .
+RUN chmod 755 /dmoj/site/mathjax.js
+RUN cp /dmoj-site-docker/mathjax-load.html templates/
+RUN chmod 755 /dmoj/site/templates/mathjax-load.html
 RUN mkdir -p /dmoj/site/static/libs/ace
 RUN cp -r /ace-builds/src-noconflict/* /dmoj/site/static/libs/ace/
 RUN npm install qu ws simplesets
