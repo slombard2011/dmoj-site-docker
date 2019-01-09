@@ -48,7 +48,6 @@ COPY files/config.js /dmoj/site/websocket/
 RUN apt-get install python-ldap
 #RUN pip install ldap
 RUN apt-get install -y python-django-auth-ldap
-RUN npm install qu ws simplesets
 
 ADD files/nginx.conf /etc/nginx/conf.d/
 RUN rm /etc/nginx/sites-available/default
@@ -74,7 +73,7 @@ WORKDIR /dmoj/site
 
 RUN mkdir -p /dmoj/site/static/libs/ace
 RUN cp -r /ace-builds/src-noconflict/* /dmoj/site/static/libs/ace/
-
+RUN npm install qu ws simplesets
 ADD docker-entrypoint.sh /dmoj/site/
 RUN chmod 755 /dmoj/site/docker-entrypoint.sh
 #ENTRYPOINT ["/dmoj/site/docker-entrypoint.sh"]
