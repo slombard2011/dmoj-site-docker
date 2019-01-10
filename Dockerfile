@@ -56,11 +56,28 @@ ADD files/default /etc/nginx/sites-available/
 ADD files/default /etc/nginx/sites-enabled/
 
 RUN rm /dmoj/site/judge/middleware.py
-ADD middleware.py /dmoj/site/judge/
+COPY files/middleware.py /dmoj/site/judge/
 RUN chmod 755 /dmoj/site/judge/middleware.py
 RUN rm /dmoj/site/judge/template_context.py
-ADD template_context.py /dmoj/site/judge/
+COPY files/template_context.py /dmoj/site/judge/
 RUN chmod 755 /dmoj/site/judge/template_context.py
+RUN rm /dmoj/site/src/dmoj-wpadmin/wpadmin/templatetags/wpadmin_menu_tags.py
+COPY files/wpadmin_menu_tags.py /dmoj/site/src/dmoj-wpadmin/wpadmin/templatetags/
+RUN chmod 755 /dmoj/site/src/dmoj-wpadmin/wpadmin/templatetags/wpadmin_menu_tags.py
+RUN rm /dmoj/site/judge/jinja2/gravatar.py
+COPY files/gravatar.py /dmoj/site/judge/jinja2/
+RUN chmod 755 /dmoj/site/judge/jinja2/gravatar.py
+
+WORKDIR /dmoj/site
+COPY files/mathjax.js /dmoj/site/
+RUN chmod 755 /dmoj/site/mathjax.js
+COPY files/mathjax-load.html /dmoj/site/templates/
+RUN chmod 755 /dmoj/site/templates/mathjax-load.html
+RUN mkdir -p /dmoj/site/static/libs/ace
+RUN cp -r /ace-builds/src-noconflict/* /dmoj/site/static/libs/ace/
+RUN npm install qu ws simplesets
+ADD docker-entrypoint.sh /dmoj/site/
+RUN chmod 755 /dmoj/site/docker-entrypoint.sh
 
 EXPOSE 80
 EXPOSE 9999
@@ -69,14 +86,4 @@ EXPOSE 15100
 EXPOSE 15101
 EXPOSE 15102
 
-WORKDIR /dmoj/site
-RUN cp /dmoj-site-docker/mathjax.js .
-RUN chmod 755 /dmoj/site/mathjax.js
-RUN cp /dmoj-site-docker/mathjax-load.html templates/
-RUN chmod 755 /dmoj/site/templates/mathjax-load.html
-RUN mkdir -p /dmoj/site/static/libs/ace
-RUN cp -r /ace-builds/src-noconflict/* /dmoj/site/static/libs/ace/
-RUN npm install qu ws simplesets
-ADD docker-entrypoint.sh /dmoj/site/
-RUN chmod 755 /dmoj/site/docker-entrypoint.sh
-#ENTRYPOINT ["/dmoj/site/docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "/dmoj/site/docker-entrypoint.sh"]
