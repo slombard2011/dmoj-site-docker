@@ -67,6 +67,12 @@ RUN chmod 755 /dmoj/site/src/dmoj-wpadmin/wpadmin/templatetags/wpadmin_menu_tags
 RUN rm /dmoj/site/judge/jinja2/gravatar.py
 COPY files/gravatar.py /dmoj/site/judge/jinja2/
 RUN chmod 755 /dmoj/site/judge/jinja2/gravatar.py
+RUN rm /dmoj/site/judge/widgets/select2.py
+COPY files/select2.py /dmoj/site/judge/widgets/
+RUN chmod 755 /dmoj/site/judge/widgets/select2.py
+COPY files/select2.min.js /dmoj/site/
+COPY files/select2.min.css /dmoj/site/
+RUN chmod 766 /dmoj/site/select2.min.*
 
 WORKDIR /dmoj/site
 COPY files/mathjax.js /dmoj/site/
@@ -86,4 +92,4 @@ EXPOSE 15100
 EXPOSE 15101
 EXPOSE 15102
 
-ENTRYPOINT ["sh", "/dmoj/site/docker-entrypoint.sh"]
+#ENTRYPOINT ["sh", "/dmoj/site/docker-entrypoint.sh"]
