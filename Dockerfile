@@ -92,4 +92,4 @@ EXPOSE 15100
 EXPOSE 15101
 EXPOSE 15102
 
-#ENTRYPOINT ["sh", "/dmoj/site/docker-entrypoint.sh"]
+ENTRYPOINT ["/dmoj/site/docker-entrypoint.sh"]
