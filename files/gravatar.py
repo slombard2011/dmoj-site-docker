@@ -16,5 +16,5 @@ def gravatar(email, size=80, default=None):
     elif isinstance(email, AbstractUser):
         email = email.email
 
-    gravatar_url = 'file:///dmoj/site/static/icons/logo.png/'
+    gravatar_url = '/static/icons/logo.png/'
     return gravatar_url
