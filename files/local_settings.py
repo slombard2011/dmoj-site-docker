@@ -26,19 +26,19 @@ AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
-AUTH_LDAP_SERVER_URI = 'ldaps://noe-gardiansesame.edf.fr'
+AUTH_LDAP_SERVER_URI = 'ldaps://XXX'
 
-AUTH_LDAP_BIND_DN = 'uid=9TPTI001,ou=Applis,dc=gardiansesame'
-AUTH_LDAP_BIND_PASSWORD = 'h+hGXe7U'
+AUTH_LDAP_BIND_DN = 'uid=XXX,ou=XXX,dc=XXX'
+AUTH_LDAP_BIND_PASSWORD = 'XXX'
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
-    'ou=people,dc=gardiansesame',
+    'ou=XXX,dc=XXX',
     ldap.SCOPE_SUBTREE,
     '(uid=%(user)s)',
 )
 AUTH_LDAP_USER_ATTR_MAP = {
-    'first_name': 'givenName',
-    'last_name': 'sn',
-    'email': 'mail',
+    'first_name': 'XXX',
+    'last_name': 'XXX',
+    'email': 'XXX',
 }
 
 AUTH_LDAP_ALWAYS_UPDATE_USER = True
