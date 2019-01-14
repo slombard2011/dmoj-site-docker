@@ -48,8 +48,8 @@ from django.core import signing
 from django.core.urlresolvers import reverse_lazy
 from django.forms.models import ModelChoiceIterator
 
-DEFAULT_SELECT2_JS = 'file:///dmoj/site/select2.min.js'
-DEFAULT_SELECT2_CSS = 'file:///dmoj/site/select2.min.css'
+DEFAULT_SELECT2_JS = '/select2.min.js'
+DEFAULT_SELECT2_CSS = '/select2.min.css'
 
 __all__ = ['Select2Widget', 'Select2MultipleWidget', 'Select2TagWidget',
            'HeavySelect2Widget', 'HeavySelect2MultipleWidget', 'HeavySelect2TagWidget']

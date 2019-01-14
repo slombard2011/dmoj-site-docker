@@ -6,6 +6,7 @@ RUN mkdir /dmoj-site-docker/buildscripts
 COPY * /dmoj-site-docker/
 COPY files/* /dmoj-site-docker/files/
 COPY buildscripts/* /dmoj-site-docker/buildscripts/
+RUN chmod +x /dmoj-site-docker/buildscripts/*
 
 RUN /dmoj-site-docker/buildscripts/logsinit.sh
 RUN /dmoj-site-docker/buildscripts/dependencies.sh

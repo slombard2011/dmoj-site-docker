@@ -30,7 +30,7 @@ class GravatarUrlNode(template.Node):
         except template.VariableDoesNotExist:
             size = 80
 
-        gravatar_url = 'file:///dmoj/site/static/icons/logo.png' 
+        gravatar_url = '/static/icons/logo.png' 
         if self.variable is not None:
             context[self.variable] = gravatar_url
             return ''
