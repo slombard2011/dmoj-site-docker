@@ -37,8 +37,8 @@ docker exec dmoj-mysql mysql -uroot -pdmoj --execute="GRANT ALL PRIVILEGES ON dm
 ## Start the site on port 80 :
 
 ```
-docker run --name=dmoj-site --network=isolated_nw -p 80:80 -p 9999:9999 -p 9998:9998 -t -i -d dmoj-site
+docker run --name=dmoj-site -v /local00/docker-data/dmoj/logs:/dmoj/logs --network=isolated_nw -p 80:80 -p 9999:9999 -p 9998:9998 -t -i -d dmoj-site
 ```
 
-## Wait 5 minutes and the website should be online. If not use logs in the container found in /dmoj/logs/
+## Wait 5 minutes and the website should be online. If not use logs found in /local00/docker-data/dmoj/logs/
 
