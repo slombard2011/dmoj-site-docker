@@ -21,8 +21,8 @@ echo -e "\n --- starting up  ---\n"
 	python manage.py loaddata language_small
 	echo "------------------------ loaddata demo -----------------------------------------"
 	python manage.py loaddata demo
-	echo "------------------------ create superuser -----------------------------------------"
-	python manage.py createsuperuser
+	#echo "------------------------ create superuser -----------------------------------------"
+	#python manage.py createsuperuser
 	#echo "------------------------ runserver -----------------------------------------"
 	#python manage.py runserver 0.0.0.0:8000 #should not be used in production
 	chown dmoj-uwsgi -R /dmoj/site

@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.http import urlquote
-from django.core.exceptions import RelatedObjectDoesNotExist
+#from django.core.exceptions import RelatedObjectDoesNotExist
 
 class DMOJLoginMiddleware(object):
     def __init__(self, get_response):
@@ -21,8 +21,10 @@ class DMOJLoginMiddleware(object):
                 if (profile.is_totp_enabled and not request.session.get('2fa_passed', False) and
                         request.path != login_2fa_path and not request.path.startswith(settings.STATIC_URL)):
                     return HttpResponseRedirect(login_2fa_path + '?next=' + urlquote(request.get_full_path()))
-            except RelatedObjectDoesNotExist: # let the system create a default profile if user has been added through LDAP
-                request.profile = None
+            except ObjectDoesNotExist: # let the system create a default profile if user has been added through LDAP
+                request.profile = Profile(user=request.user)
+                request.profile.language = Language.objects.get(key='PY2')
+                request.profile.save()
         else:
             request.profile = None
         return self.get_response(request)
