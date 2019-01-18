@@ -2,7 +2,8 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.http import urlquote
-#from django.core.exceptions import RelatedObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
+from judge.models import Profile, Language
 
 class DMOJLoginMiddleware(object):
     def __init__(self, get_response):
