@@ -22,29 +22,29 @@ DATABASES = {
     }
 }
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', u'*']
-AUTHENTICATION_BACKENDS = [
-    'django_auth_ldap.backend.LDAPBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-AUTH_LDAP_SERVER_URI = 'ldaps://XXX'
+#AUTHENTICATION_BACKENDS = [
+#    'django_auth_ldap.backend.LDAPBackend',
+#    'django.contrib.auth.backends.ModelBackend',
+#]
+#AUTH_LDAP_SERVER_URI = 'ldaps://XXX'
 
-AUTH_LDAP_BIND_DN = 'uid=XXX,ou=XXX,dc=XXX'
-AUTH_LDAP_BIND_PASSWORD = 'XXX'
-AUTH_LDAP_USER_SEARCH = LDAPSearch(
-    'ou=XXX,dc=XXX',
-    ldap.SCOPE_SUBTREE,
-    '(uid=%(user)s)',
-)
-AUTH_LDAP_USER_ATTR_MAP = {
-    'first_name': 'XXX',
-    'last_name': 'XXX',
-    'email': 'XXX',
-}
+#AUTH_LDAP_BIND_DN = 'uid=XXX,ou=XXX,dc=XXX'
+#AUTH_LDAP_BIND_PASSWORD = 'XXX'
+#AUTH_LDAP_USER_SEARCH = LDAPSearch(
+#    'ou=XXX,dc=XXX',
+#    ldap.SCOPE_SUBTREE,
+#    '(uid=%(user)s)',
+#)
+#AUTH_LDAP_USER_ATTR_MAP = {
+#    'first_name': 'XXX',
+#    'last_name': 'XXX',
+#    'email': 'XXX',
+#}
 
-AUTH_LDAP_ALWAYS_UPDATE_USER = True
-AUTH_LDAP_FIND_GROUP_PERMS = False
-ldap.set_option( ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER ) 
-AUTH_LDAP_AUTHORIZE_ALL_USERS = True
+#AUTH_LDAP_ALWAYS_UPDATE_USER = True
+#AUTH_LDAP_FIND_GROUP_PERMS = False
+#ldap.set_option( ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER ) 
+#AUTH_LDAP_AUTHORIZE_ALL_USERS = True
 
 ACE_URL = '/static/libs/ace/'
 
