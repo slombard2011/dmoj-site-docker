@@ -18,6 +18,8 @@ ENV SITE_DIR=/opt/app-root/src/site
 ENV FILES_DIR=/opt/app-root/src/files
 ENV VIRTUALENV_PATH=/envs/dmoj
 
+RUN echo ${SITE_DIR}
+
 RUN adduser dmoj
 RUN adduser dmoj-uwsgi
 
