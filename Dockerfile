@@ -14,8 +14,8 @@ RUN /dmoj-site-docker/buildscripts/node.sh
 RUN /dmoj-site-docker/buildscripts/pleeeasecli.sh
 RUN /dmoj-site-docker/buildscripts/phantomjs.sh
 
-ENV SITE_DIR=/dmoj/site
-ENV FILES_DIR=/dmoj/files
+ENV SITE_DIR=/opt/app-root/src/site
+ENV FILES_DIR=/opt/app-root/src/files
 ENV VIRTUALENV_PATH=/envs/dmoj
 
 RUN adduser dmoj
@@ -23,8 +23,8 @@ RUN adduser dmoj-uwsgi
 
 RUN /dmoj-site-docker/buildscripts/webapp.sh
 RUN pip install pymysql
-RUN mkdir -p /dmoj/files/
-RUN cp /dmoj-site-docker/files/* /dmoj/files/
+RUN mkdir -p /opt/app-root/src/files/
+RUN cp /dmoj-site-docker/files/* /opt/app-root/src/files/
 
 RUN /dmoj-site-docker/buildscripts/setupapp.sh
 
