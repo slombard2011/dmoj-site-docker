@@ -23,7 +23,7 @@ RUN adduser dmoj-uwsgi
 
 RUN /dmoj-site-docker/buildscripts/webapp.sh
 RUN pip install pymysql
-RUN mkdir -p /opt/app-root/src/files/
+RUN mkdir -p /opt/app-root/src/files/ /opt/app-root/src/site/
 RUN cp /dmoj-site-docker/files/* /opt/app-root/src/files/
 
 RUN /dmoj-site-docker/buildscripts/setupapp.sh
